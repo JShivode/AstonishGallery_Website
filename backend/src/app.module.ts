@@ -1,29 +1,26 @@
 // src/app.module.ts
-
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
+import { User, UserSchema } from './schemas/user.schema';
+import { Album, AlbumSchema } from './schemas/album.schema';
+import { Image, ImageSchema } from './schemas/image.schema';
 
 @Module({
   imports: [
-    // Load environment variables from .env (isGlobal: true makes them accessible everywhere)
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-
-    // Connect to MongoDB using an environment variable, with a fallback string if not provided
     MongooseModule.forRoot(process.env.MONGODB_URI || 'mongodb://localhost:27017/astonishgallery'),
 
-    // Import additional feature modules here, for example:
-    // UsersModule,
-    // AlbumsModule,
-    // ImagesModule,
+    // Register your schemas here
+    MongooseModule.forFeature([
+      { name: User.name, schema: UserSchema },
+      { name: Album.name, schema: AlbumSchema },
+      { name: Image.name, schema: ImageSchema },
+    ]),
   ],
-  controllers: [
-    // Add your controllers here
-  ],
-  providers: [
-    // Add your providers/services here
-  ],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
