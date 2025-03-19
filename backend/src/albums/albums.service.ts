@@ -17,8 +17,8 @@ export class AlbumsService {
     return this.albumModel.find().exec();
   }
 
-  async createAlbum(createAlbumDto: CreateAlbumDto) {
-    const newAlbum = new this.albumModel(createAlbumDto);
+  async createAlbum(createAlbumData: any) {
+    const newAlbum = new this.albumModel(createAlbumData);
     return newAlbum.save();
   }
 
@@ -30,8 +30,8 @@ export class AlbumsService {
     return album;
   }
 
-  async updateAlbum(id: string, updateAlbumDto: UpdateAlbumDto) {
-    const updatedAlbum = await this.albumModel.findByIdAndUpdate(id, updateAlbumDto, { new: true });
+  async updateAlbum(id: string, updateAlbumData: any) {
+    const updatedAlbum = await this.albumModel.findByIdAndUpdate(id, updateAlbumData, { new: true });
     if (!updatedAlbum) {
       throw new NotFoundException(`Album with ID ${id} not found`);
     }

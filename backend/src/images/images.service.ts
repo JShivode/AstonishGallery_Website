@@ -15,8 +15,8 @@ export class ImagesService {
     return this.imageModel.find().exec();
   }
 
-  async createImage(createImageDto: CreateImageDto) {
-    const newImage = new this.imageModel(createImageDto);
+  async createImage(createImageData: any) {
+    const newImage = new this.imageModel(createImageData);
     return newImage.save();
   }
 
@@ -28,8 +28,8 @@ export class ImagesService {
     return image;
   }
 
-  async updateImage(id: string, updateImageDto: UpdateImageDto) {
-    const updatedImage = await this.imageModel.findByIdAndUpdate(id, updateImageDto, { new: true });
+  async updateImage(id: string, updateImageData: any) {
+    const updatedImage = await this.imageModel.findByIdAndUpdate(id, updateImageData, { new: true });
     if (!updatedImage) {
       throw new NotFoundException(`Image with ID ${id} not found`);
     }

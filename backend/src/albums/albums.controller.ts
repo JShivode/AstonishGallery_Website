@@ -15,8 +15,8 @@ export class AlbumsController {
 
   // POST /albums - Create a new album
   @Post()
-  async createAlbum(@Body() createAlbumDto: CreateAlbumDto) {
-    return this.albumsService.createAlbum(createAlbumDto);
+  async createAlbum(@Body() createAlbumData: any) {
+    return this.albumsService.createAlbum(createAlbumData);
   }
 
   // GET /albums/:id - Retrieve a specific album
@@ -27,8 +27,8 @@ export class AlbumsController {
 
   // PUT /albums/:id - Update a specific album
   @Put(':id')
-  async updateAlbum(@Param('id') id: string, @Body() updateAlbumDto: UpdateAlbumDto) {
-    return this.albumsService.updateAlbum(id, updateAlbumDto);
+  async updateAlbum(@Param('id') id: string, @Body() updateAlbumData: any) {
+    return this.albumsService.updateAlbum(id, updateAlbumData);
   }
 
   // DELETE /albums/:id - Delete a specific album

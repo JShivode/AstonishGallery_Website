@@ -29,13 +29,13 @@ export class UsersService {
     return usersWithAlbumCount;
   }
 
-  async createUser(createUserDto: CreateUserDto) {
-    const newUser = new this.userModel(createUserDto);
+  async createUser(createUserData: any) {
+    const newUser = new this.userModel(createUserData);
     return newUser.save();
   }
 
-  async updateUser(id: string, updateUserDto: UpdateUserDto) {
-    const updatedUser = await this.userModel.findByIdAndUpdate(id, updateUserDto, { new: true });
+  async updateUser(id: string, updateUserData: any) {
+    const updatedUser = await this.userModel.findByIdAndUpdate(id, updateUserData, { new: true });
     if (!updatedUser) {
       throw new NotFoundException(`User with ID ${id} not found`);
     }

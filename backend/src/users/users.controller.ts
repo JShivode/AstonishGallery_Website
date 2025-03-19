@@ -15,14 +15,14 @@ export class UsersController {
 
   // POST /users - Add a new user
   @Post()
-  async createUser(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.createUser(createUserDto);
+  async createUser(@Body() createUserData: any) {
+    return this.usersService.createUser(createUserData);
   }
 
   // PUT /users/:id - Update a user
   @Put(':id')
-  async updateUser(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.updateUser(id, updateUserDto);
+  async updateUser(@Param('id') id: string, @Body() updateUserData: any) {
+    return this.usersService.updateUser(id, updateUserData);
   }
 
   // DELETE /users/:id - Delete a user

@@ -15,8 +15,8 @@ export class ImagesController {
 
   // POST /images - Create a new image
   @Post()
-  async createImage(@Body() createImageDto: CreateImageDto) {
-    return this.imagesService.createImage(createImageDto);
+  async createImage(@Body() createImageData: any) {
+    return this.imagesService.createImage(createImageData);
   }
 
   // GET /images/:id - Retrieve a specific image
@@ -27,8 +27,8 @@ export class ImagesController {
 
   // PUT /images/:id - Update a specific image
   @Put(':id')
-  async updateImage(@Param('id') id: string, @Body() updateImageDto: UpdateImageDto) {
-    return this.imagesService.updateImage(id, updateImageDto);
+  async updateImage(@Param('id') id: string, @Body() updateImageData: any) {
+    return this.imagesService.updateImage(id, updateImageData);
   }
 
   // DELETE /images/:id - Delete a specific image
