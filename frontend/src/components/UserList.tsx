@@ -1,58 +1,38 @@
 // src/components/UserList.tsx
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { List, ListItemButton, ListItemText, Paper, Typography } from '@mui/material';
+
+import React from 'react';
+import { List, ListItemButton, ListItemText } from '@mui/material';
 
 interface User {
   id: number;
   name: string;
-  email: string;
-  albumCount: number;
+  email?: string;
+  albumCount?: number;
 }
 
 interface UserListProps {
+  // The array of users to display
+  users: User[];
+
+  // A callback function that runs when a user is selected
   onUserSelect: (user: User) => void;
 }
 
-const UserList: React.FC<UserListProps> = ({ onUserSelect }) => {
-  const [users, setUsers] = useState<User[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    axios.get<User[]>('http://localhost:3000/users')
-      .then(response => {
-        setUsers(response.data);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching users', error);
-        setLoading(false);
-      });
-  }, []);
-
-  if (loading) {
-    return <Typography>Loading users...</Typography>;
-  }
-
+const UserList: React.FC<UserListProps> = ({ users, onUserSelect }) => {
   return (
-    <Paper style={{ padding: 16 }}>
-      <Typography variant="h6" gutterBottom>
-        Users
-      </Typography>
-      <List>
-        {users.map(user => (
-          <ListItemButton
-            key={user.id}
-            onClick={() => onUserSelect(user)}
-          >
-            <ListItemText 
-              primary={user.name} 
-              secondary={`Email: ${user.email} | Albums: ${user.albumCount}`} 
-            />
-          </ListItemButton>
-        ))}
-      </List>
-    </Paper>
+    <List>
+      {users.map((user) => (
+        <ListItemButton
+          key={user.id}
+          onClick={() => onUserSelect(user)}
+        >
+          <ListItemText
+            primary={user.name}
+            secondary={`Email: ${user.email ?? ''} | Albums: ${user.albumCount ?? 0}`}
+          />
+        </ListItemButton>
+      ))}
+    </List>
   );
 };
 
