@@ -1,7 +1,7 @@
 // src/images/images.controller.ts
 import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
 import { ImagesService } from './images.service';
-import { CreateImageDto, UpdateImageDto } from './dto';
+//import { CreateImageDto, UpdateImageDto } from './dto';
 
 @Controller('images')
 export class ImagesController {

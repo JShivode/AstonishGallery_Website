@@ -3,7 +3,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Image, ImageDocument } from '../schemas/image.schema';
-import { CreateImageDto, UpdateImageDto } from './dto';
+//import { CreateImageDto, UpdateImageDto } from './dto';
 
 @Injectable()
 export class ImagesService {

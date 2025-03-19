@@ -4,7 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Album, AlbumDocument } from '../schemas/album.schema';
 import { Image, ImageDocument } from '../schemas/image.schema';
-import { CreateAlbumDto, UpdateAlbumDto } from './dto';
+//import { CreateAlbumDto, UpdateAlbumDto } from './dto';
 
 @Injectable()
 export class AlbumsService {
