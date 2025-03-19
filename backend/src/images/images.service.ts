@@ -1,46 +1,49 @@
-// src/images/images.service.ts
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import { Image, ImageDocument } from '../schemas/image.schema';
-//import { CreateImageDto, UpdateImageDto } from './dto';
+import { loadJsonData } from '../utils/load-json';
 
 @Injectable()
 export class ImagesService {
-  constructor(
-    @InjectModel(Image.name) private imageModel: Model<ImageDocument>,
-  ) {}
+  private images: any[];
 
-  async getAllImages() {
-    return this.imageModel.find().exec();
+  constructor() {
+    // Load images data from photos.json (or images.json if that’s your filename)
+    this.images = loadJsonData('photos.json');
   }
 
-  async createImage(createImageData: any) {
-    const newImage = new this.imageModel(createImageData);
-    return newImage.save();
+  async getAllImages(): Promise<any[]> {
+    return this.images;
   }
 
-  async getImage(id: string) {
-    const image = await this.imageModel.findById(id);
+  async createImage(createImageData: any): Promise<any> {
+    const newId = this.images.length > 0 ? Math.max(...this.images.map(i => i.id)) + 1 : 1;
+    const newImage = { id: newId, ...createImageData };
+    this.images.push(newImage);
+    return newImage;
+  }
+
+  async getImage(id: string): Promise<any> {
+    const image = this.images.find(img => String(img.id) === id);
     if (!image) {
       throw new NotFoundException(`Image with ID ${id} not found`);
     }
     return image;
   }
 
-  async updateImage(id: string, updateImageData: any) {
-    const updatedImage = await this.imageModel.findByIdAndUpdate(id, updateImageData, { new: true });
-    if (!updatedImage) {
+  async updateImage(id: string, updateImageData: any): Promise<any> {
+    const index = this.images.findIndex(img => String(img.id) === id);
+    if (index === -1) {
       throw new NotFoundException(`Image with ID ${id} not found`);
     }
-    return updatedImage;
+    this.images[index] = { ...this.images[index], ...updateImageData };
+    return this.images[index];
   }
 
-  async deleteImage(id: string) {
-    const result = await this.imageModel.findByIdAndDelete(id);
-    if (!result) {
+  async deleteImage(id: string): Promise<any> {
+    const index = this.images.findIndex(img => String(img.id) === id);
+    if (index === -1) {
       throw new NotFoundException(`Image with ID ${id} not found`);
     }
-    return { message: `Image with ID ${id} deleted successfully` };
+    const deletedImage = this.images.splice(index, 1)[0];
+    return { message: `Image with ID ${id} deleted successfully`, deletedImage };
   }
 }

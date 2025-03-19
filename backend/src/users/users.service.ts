@@ -1,60 +1,54 @@
-// src/users/users.service.ts
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import { User, UserDocument } from '../schemas/user.schema';
-import { Album, AlbumDocument } from '../schemas/album.schema';
-//import { CreateUserDto, UpdateUserDto } from './dto'; // (Optional) Data Transfer Objects
+import { loadJsonData } from '../utils/load-json';
 
 @Injectable()
 export class UsersService {
-  constructor(
-    @InjectModel(User.name) private userModel: Model<UserDocument>,
-    @InjectModel(Album.name) private albumModel: Model<AlbumDocument>,
-  ) {}
+  private users: any[];
+  private albums: any[];
 
-  async getAllUsersWithAlbumCount() {
-    // 1) Fetch all users
-    const users = await this.userModel.find().exec();
-
-    // 2) For each user, count the number of albums
-    //    (Alternatively, you can use an aggregation pipeline)
-    const usersWithAlbumCount = await Promise.all(
-      users.map(async (user) => {
-        const albumCount = await this.albumModel.countDocuments({ userId: user._id });
-        return { ...user.toObject(), albumCount };
-      }),
-    );
-
-    return usersWithAlbumCount;
+  constructor() {
+    // Load data from JSON files
+    this.users = loadJsonData('users.json');
+    this.albums = loadJsonData('albums.json');
   }
 
-  async createUser(createUserData: any) {
-    const newUser = new this.userModel(createUserData);
-    return newUser.save();
+  async getAllUsersWithAlbumCount(): Promise<any[]> {
+    // For each user, count the number of albums based on user.id matching album.userId
+    return this.users.map(user => {
+      const albumCount = this.albums.filter(album => String(album.userId) === String(user.id)).length;
+      return { ...user, albumCount };
+    });
   }
 
-  async updateUser(id: string, updateUserData: any) {
-    const updatedUser = await this.userModel.findByIdAndUpdate(id, updateUserData, { new: true });
-    if (!updatedUser) {
+  async createUser(createUserData: any): Promise<any> {
+    // Assign a new id: max existing id + 1 (or 1 if empty)
+    const newId = this.users.length > 0 ? Math.max(...this.users.map(u => u.id)) + 1 : 1;
+    const newUser = { id: newId, ...createUserData };
+    this.users.push(newUser);
+    // Optionally, write back to file here if persistence is desired.
+    return newUser;
+  }
+
+  async updateUser(id: string, updateUserData: any): Promise<any> {
+    const index = this.users.findIndex(user => String(user.id) === id);
+    if (index === -1) {
       throw new NotFoundException(`User with ID ${id} not found`);
     }
-    return updatedUser;
+    this.users[index] = { ...this.users[index], ...updateUserData };
+    return this.users[index];
   }
 
-  async deleteUser(id: string) {
-    const result = await this.userModel.findByIdAndDelete(id);
-    if (!result) {
+  async deleteUser(id: string): Promise<any> {
+    const index = this.users.findIndex(user => String(user.id) === id);
+    if (index === -1) {
       throw new NotFoundException(`User with ID ${id} not found`);
     }
-    return { message: `User with ID ${id} deleted successfully` };
+    const deletedUser = this.users.splice(index, 1)[0];
+    return { message: `User with ID ${id} deleted successfully`, deletedUser };
   }
 
-  async getUserAlbums(userId: string) {
-    // Optionally validate that user exists
-    // const user = await this.userModel.findById(userId);
-    // if (!user) throw new NotFoundException(`User with ID ${userId} not found`);
-
-    return this.albumModel.find({ userId }).exec();
+  async getUserAlbums(userId: string): Promise<any[]> {
+    // Filter albums whose userId matches the given userId
+    return this.albums.filter(album => String(album.userId) === userId);
   }
 }
