@@ -58,7 +58,7 @@ Users can **create**, **edit**, and **delete** users, albums, and images. The ap
 ## Screenshots
 
 ### 1. Main Page: Creating a New User
-![Create User Screenshot](./screenshots/create-user.png)
+![Create User Screenshot](./screenshots/create-user-form.png)
 
 > **Description**: **"Add New User"** form where you can enter the user’s name and email.
 
