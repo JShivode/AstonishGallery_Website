@@ -19,8 +19,9 @@ AstonishGallery is a full-stack mini-site designed to showcase users, albums, an
 5. [Usage](#usage)
 6. [Testing with Postman](#testing-with-postman)
 7. [Technologies Used](#technologies-used)
-8. [Contributing](#contributing)
-9. [License](#license)
+8. [Data Sources](#data-sources)
+9. [Contributing](#contributing)
+10. [License](#license)
 
 ---
 
@@ -166,6 +167,18 @@ To verify or troubleshoot API endpoints, you can use Postman:
 - **CSS Variables** for consistent theming
 - **Axios** for HTTP requests
 - **MongoDB or local JSON** (depending on your setup) for data storage
+
+---
+
+## Data Sources
+
+The project uses the following references for placeholder data and images:
+
+1. [JSONPlaceholder](https://jsonplaceholder.typicode.com/)  
+   - Provides sample user and album data (e.g., 10 users, user albums, etc.)
+
+2. [Picsum.photos](https://picsum.photos/)  
+   - Supplies random placeholder images for the album covers and gallery.
 
 ---
 
