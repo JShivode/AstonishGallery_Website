@@ -1,7 +1,8 @@
-// src/components/ImageCarousel.tsx
+// frontend/src/components/ImageCarousel.tsx
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Box, IconButton, Typography } from '@mui/material';
+import { Box, Typography, IconButton, Slide } from '@mui/material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
@@ -21,10 +22,12 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ albumId }) => {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
+    // Fetch images for the given albumId
     axios.get<Image[]>(`http://localhost:3000/albums/${albumId}/images`)
       .then(response => {
         setImages(response.data);
         setLoading(false);
+        setCurrentIndex(0); // Reset index when album changes
       })
       .catch(error => {
         console.error('Error fetching images', error);
@@ -50,24 +53,27 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ albumId }) => {
 
   return (
     <Box position="relative" textAlign="center" width="100%" maxWidth={600} margin="auto">
-      <img 
-        src={images[currentIndex].imageUrl} 
-        alt={`Image ${currentIndex + 1}`} 
-        style={{ width: '100%', borderRadius: 8 }}
-      />
+      {/* Slide transition for image changes */}
+      <Slide direction="left" in key={images[currentIndex].id} timeout={300}>
+        <Box component="img"
+          src={images[currentIndex].imageUrl}
+          alt={`Image ${currentIndex + 1}`}
+          sx={{ width: '100%', borderRadius: 'var(--card-radius)' }}
+        />
+      </Slide>
       <IconButton 
         onClick={prevImage} 
-        style={{ position: 'absolute', top: '50%', left: 0, transform: 'translateY(-50%)' }}
+        sx={{ position: 'absolute', top: '50%', left: 0, transform: 'translateY(-50%)' }}
       >
         <ArrowBackIosIcon />
       </IconButton>
       <IconButton 
         onClick={nextImage} 
-        style={{ position: 'absolute', top: '50%', right: 0, transform: 'translateY(-50%)' }}
+        sx={{ position: 'absolute', top: '50%', right: 0, transform: 'translateY(-50%)' }}
       >
         <ArrowForwardIosIcon />
       </IconButton>
-      <Typography variant="caption" display="block" marginTop={1}>
+      <Typography variant="caption" display="block" mt={1}>
         {currentIndex + 1} / {images.length}
       </Typography>
     </Box>

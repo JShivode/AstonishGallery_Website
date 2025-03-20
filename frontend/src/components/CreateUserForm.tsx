@@ -9,7 +9,7 @@ import {
   TextField,
   Button,
   Grow,
-  Alert
+  Alert,
 } from '@mui/material';
 
 interface CreateUserFormProps {
@@ -24,22 +24,15 @@ const CreateUserForm: React.FC<CreateUserFormProps> = ({ onUserCreated }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setShowSuccess(false); // Hide success message before new request
+    setShowSuccess(false); // Reset success state before submitting
     try {
-      // Send POST request to your NestJS backend
       const response = await axios.post('http://localhost:3000/users', {
         name,
         email,
       });
-
-      // Call the parent callback with the newly created user
       onUserCreated(response.data);
-
-      // Clear input fields
       setName('');
       setEmail('');
-
-      // Clear error and show success
       setError('');
       setShowSuccess(true);
     } catch (err) {
@@ -53,7 +46,6 @@ const CreateUserForm: React.FC<CreateUserFormProps> = ({ onUserCreated }) => {
       <Typography variant="h6" gutterBottom>
         Add New User
       </Typography>
-
       <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
         <TextField
           label="Name"
@@ -63,7 +55,6 @@ const CreateUserForm: React.FC<CreateUserFormProps> = ({ onUserCreated }) => {
           margin="normal"
           required
         />
-
         <TextField
           label="Email"
           value={email}
@@ -72,24 +63,15 @@ const CreateUserForm: React.FC<CreateUserFormProps> = ({ onUserCreated }) => {
           margin="normal"
           required
         />
-
-        {/* If there's an error, show an Alert */}
         {error && (
           <Alert severity="error" sx={{ mt: 2 }}>
             {error}
           </Alert>
         )}
-
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          sx={{ mt: 2 }}
-        >
+        <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>
           Create User
         </Button>
-
-        {/* Grow animation for the success message */}
+        {/* Grow transition for the success message */}
         <Grow in={showSuccess}>
           <Box sx={{ mt: 2 }}>
             <Alert severity="success">User created successfully!</Alert>
