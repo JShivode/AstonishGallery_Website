@@ -6,10 +6,6 @@ AstonishGallery is a full-stack mini-site designed to showcase users, albums, an
 - **Material UI** (styling and design consistency)
 - **CSS Variables** (for a cohesive look and feel)
 
-![AstonishGallery Overview](./screenshots/astonishgallery-overview.png)
-
-> **Note**: Replace `./screenshots/astonishgallery-overview.png` with the actual path or URL to your screenshot file.
-
 ---
 
 ## Table of Contents
@@ -61,15 +57,10 @@ Users can **create**, **edit**, and **delete** users, albums, and images. The ap
 
 ## Screenshots
 
+### 1. Main Page: Creating a New User
 ![Create User Screenshot](./screenshots/create-user.png)
 
-**Reasoning:**  
-This screenshot shows the **"Add New User"** form where you can enter the user’s name and email. Naming it `create-user-form.png` clearly indicates that it’s the portion of the application where a user is created.
-
-### 1. Main Page: Creating a New User
-
-
-> **Description**: This screenshot shows the **"Add New User"** form where you can enter the user’s name and email. Naming it `create-user-form.png` clearly indicates that it’s the portion of the application where a user is created..
+> **Description**: **"Add New User"** form where you can enter the user’s name and email.
 
 ### 2. User List
 ![User List Screenshot](./screenshots/user-list.png)
@@ -77,19 +68,19 @@ This screenshot shows the **"Add New User"** form where you can enter the user�
 > **Description**: Displays each user with their email and the number of albums. Clicking on a user loads their albums below.
 
 ### 3. Albums for a Selected User
-![Albums Screenshot](./screenshots/albums.png)
+![Albums Screenshot](./screenshots/albums-gallery.png)
 
 > **Description**: A gallery of album cards, each showing a placeholder or first image as cover. You can add a new album with the form above.
 
-### 4. Images in an Album
-![Images Screenshot](./screenshots/images.png)
-
-> **Description**: Shows the images for the selected album in a card layout, plus a form to add a new image.
-
 ### 5. Carousel for Viewing Images
-![Carousel Screenshot](./screenshots/carousel.png)
+![Carousel Screenshot](./screenshots/images-carousel.png)
 
 > **Description**: A simple carousel with left/right arrows for navigating images.
+
+### 6. Postman API Testing
+![Postman Testing](./screenshots/postman-users.png)
+
+> **Description**: A screenshot from Postman showing a successful GET http://localhost:3000/users request (or any other endpoint you want to demonstrate).
 
 ---
 
