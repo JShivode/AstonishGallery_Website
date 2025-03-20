@@ -151,7 +151,7 @@ To verify or troubleshoot API endpoints, you can use Postman:
      "email": "jane@example.com"
    }
 
-5. Send the request and check the response/status code.
+5. **Send** the request and check the response/status code.
 
 Description: Shows a GET http://localhost:3000/users request in Postman, returning a list of users with albums.
 
@@ -163,3 +163,24 @@ Description: Shows a GET http://localhost:3000/users request in Postman, returni
 - **CSS Variables** for consistent theming
 - **Axios** for HTTP requests
 - **MongoDB or local JSON** (depending on your setup) for data storage
+
+### Contributing
+
+1. **Fork the repository.**
+
+2. **Create a new feature branch:**
+   ```bash
+   git checkout -b feature/your-feature
+
+3. **Commit changes:**
+   ```bash
+   git commit -m "Add new feature"
+
+4. **Push to your branch:**
+   ```bash
+   git push origin feature/your-feature
+   
+5. **Open a pull request.**
+
+### License
+This project is licensed under the MIT License. Feel free to use and adapt it for your own purposes.
