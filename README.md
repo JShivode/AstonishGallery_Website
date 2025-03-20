@@ -114,9 +114,12 @@ Users can **create**, **edit**, and **delete** users, albums, and images. The ap
     ```bash
    npm start
 #### The React app typically runs on http://localhost:3001 or 3002 (depending on conflicts).
+
 3. **Open your browser to http://localhost:3001 (or the port displayed in the terminal).**
 
-### Usage
+---
+
+## Usage
 
 1. **Create a New User**
    - Fill in the “Add New User” form and click **Create User**. A success alert appears if the operation succeeds.
@@ -133,7 +136,9 @@ Users can **create**, **edit**, and **delete** users, albums, and images. The ap
    - The “Add New Image” form allows adding more images.
    - The carousel (ImageCarousel) displays images with left/right navigation.
 
-### Testing with Postman
+---
+
+## Testing with Postman
 
 To verify or troubleshoot API endpoints, you can use Postman:
 
@@ -153,9 +158,11 @@ To verify or troubleshoot API endpoints, you can use Postman:
 
 5. **Send** the request and check the response/status code.
 
-Description: Shows a GET http://localhost:3000/users request in Postman, returning a list of users with albums.
+#### Description: Shows a GET http://localhost:3000/users request in Postman, returning a list of users with albums.
 
-### Technologies Used
+---
+
+## Technologies Used
 
 - **NestJS (TypeScript)** for the backend
 - **React (TypeScript)** for the frontend
@@ -164,7 +171,9 @@ Description: Shows a GET http://localhost:3000/users request in Postman, returni
 - **Axios** for HTTP requests
 - **MongoDB or local JSON** (depending on your setup) for data storage
 
-### Contributing
+---
+
+## Contributing
 
 1. **Fork the repository.**
 
@@ -182,5 +191,7 @@ Description: Shows a GET http://localhost:3000/users request in Postman, returni
    
 5. **Open a pull request.**
 
-### License
-This project is licensed under the MIT License. Feel free to use and adapt it for your own purposes.
+---
+
+## License
+This project is licensed under the **MIT License**.
