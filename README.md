@@ -110,4 +110,27 @@ Users can **create**, **edit**, and **delete** users, albums, and images. The ap
    ```bash
    cd frontend
    npm install
+2. **Start the Development Server**:
+    ```bash
+   npm start
+#### The React app typically runs on http://localhost:3001 or 3002 (depending on conflicts).
+3. **Open your browser to http://localhost:3001 (or the port displayed in the terminal).**
 
+### Usage
+
+1. **Create a New User**
+   - Fill in the “Add New User” form and click **Create User**. A success alert appears if the operation succeeds.
+
+2. **View Albums**
+   - Select a user from the list. The albums for that user are displayed in a gallery format.
+
+3. **Create/Edit/Delete Albums**
+   - Add a new album using the “Add New Album” form.
+   - For editing or deleting, you can add buttons (Edit/Delete) to each album card if desired.
+
+4. **View Images**
+   - Select an album to see its images.
+   - The “Add New Image” form allows adding more images.
+   - The carousel (ImageCarousel) displays images with left/right navigation.
+
+   
