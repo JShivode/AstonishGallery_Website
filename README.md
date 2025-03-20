@@ -61,10 +61,15 @@ Users can **create**, **edit**, and **delete** users, albums, and images. The ap
 
 ## Screenshots
 
-### 1. Main Page: Creating a New User
 ![Create User Screenshot](./screenshots/create-user.png)
 
-> **Description**: A form at the top lets you add a new user. On successful creation, a success message appears (green alert).
+**Reasoning:**  
+This screenshot shows the **"Add New User"** form where you can enter the user’s name and email. Naming it `create-user-form.png` clearly indicates that it’s the portion of the application where a user is created.
+
+### 1. Main Page: Creating a New User
+
+
+> **Description**: This screenshot shows the **"Add New User"** form where you can enter the user’s name and email. Naming it `create-user-form.png` clearly indicates that it’s the portion of the application where a user is created..
 
 ### 2. User List
 ![User List Screenshot](./screenshots/user-list.png)
