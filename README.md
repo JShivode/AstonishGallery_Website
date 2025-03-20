@@ -133,4 +133,33 @@ Users can **create**, **edit**, and **delete** users, albums, and images. The ap
    - The “Add New Image” form allows adding more images.
    - The carousel (ImageCarousel) displays images with left/right navigation.
 
-   
+### Testing with Postman
+
+To verify or troubleshoot API endpoints, you can use Postman:
+
+1. **Open Postman** and create a new request.
+2. **Select the HTTP method** (GET, POST, PUT, DELETE).
+3. **Set the URL** to your NestJS server endpoint, for example:
+   - `GET http://localhost:3000/users`
+   - `POST http://localhost:3000/users`
+   - `GET http://localhost:3000/users/:id/albums`
+
+4. For **POST/PUT requests**, add a JSON body. For example, creating a new user:
+   ```json
+   {
+     "name": "Jane Doe",
+     "email": "jane@example.com"
+   }
+
+5. Send the request and check the response/status code.
+
+Description: Shows a GET http://localhost:3000/users request in Postman, returning a list of users with albums.
+
+### Technologies Used
+
+- **NestJS (TypeScript)** for the backend
+- **React (TypeScript)** for the frontend
+- **Material UI** for design system and components
+- **CSS Variables** for consistent theming
+- **Axios** for HTTP requests
+- **MongoDB or local JSON** (depending on your setup) for data storage
