@@ -100,6 +100,14 @@ Users can **create**, **edit**, and **delete** users, albums, and images. The ap
    ```typescript
    app.enableCors();
 3. **Run the Server**:
-  ```bash
-  npm run start:dev
-By default, the NestJS server listens on http://localhost:3000.
+   ```bash
+   npm run start:dev
+   
+#### By default, the NestJS server listens on http://localhost:3000.
+
+### Frontend Setup (React)
+1. **Install Dependencies**:
+   ```bash
+   cd frontend
+   npm install
+
